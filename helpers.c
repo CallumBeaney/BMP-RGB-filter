@@ -4,30 +4,26 @@
 
 void red(int height, int width, RGBTRIPLE image[height][width])
 {
-    for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-        {
+    for (int i = 0; i < height; i++){
+        for (int j = 0; j < width; j++){
+            
             int OR = image[i][j].rgbtRed;
             int OG = image[i][j].rgbtGreen;
             int OB = image[i][j].rgbtBlue;
 
             float new = round((OR + OG + OB) / 3.0);
 
-            if (new < 80) // if low
-            {
+            if (new < 80){
                 image[i][j].rgbtRed     = new;
                 image[i][j].rgbtGreen   = new;
-                image[i][j].rgbtBlue    = new; 
+                image[i][j].rgbtBlue    = new;
             } 
-            if (new > 170) // if high
-            {
+            if (new > 170){
                 image[i][j].rgbtRed     = new;
                 image[i][j].rgbtGreen   = (int) new * 0.60;
                 image[i][j].rgbtBlue    = (int) new * 0.60;
             }
-            else // mid-range
-            {
+            else {
                 image[i][j].rgbtRed     = new;
                 image[i][j].rgbtGreen   = (int) new * 0.30;
                 image[i][j].rgbtBlue    = (int) new * 0.30;
@@ -39,30 +35,26 @@ void red(int height, int width, RGBTRIPLE image[height][width])
 
 void blue(int height, int width, RGBTRIPLE image[height][width])
 {
-    for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-        {
+    for (int i = 0; i < height; i++){
+        for (int j = 0; j < width; j++){
+
             int OR = image[i][j].rgbtRed;
             int OG = image[i][j].rgbtGreen;
             int OB = image[i][j].rgbtBlue;
 
             float new = round((OR + OG + OB) / 3.0);
 
-            if (new < 80) // if low
-            {
+            if (new < 80){
                 image[i][j].rgbtRed     = new;
                 image[i][j].rgbtGreen   = new;
                 image[i][j].rgbtBlue    = new; 
             } 
-            if (new > 170) // if high
-            {
+            if (new > 170){
                 image[i][j].rgbtRed     = (int) new * 0.60;
                 image[i][j].rgbtGreen   = (int) new * 0.60;
                 image[i][j].rgbtBlue    = new;
             }
-            else // mid-range
-            {
+            else {
                 image[i][j].rgbtRed     = (int) new * 0.30;
                 image[i][j].rgbtGreen   = (int) new * 0.30;
                 image[i][j].rgbtBlue    = new;
@@ -74,30 +66,26 @@ void blue(int height, int width, RGBTRIPLE image[height][width])
 
 void green(int height, int width, RGBTRIPLE image[height][width])
 {
-    for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-        {
+    for (int i = 0; i < height; i++){
+        for (int j = 0; j < width; j++){
+
             int OR = image[i][j].rgbtRed;
             int OG = image[i][j].rgbtGreen;
             int OB = image[i][j].rgbtBlue;
 
             float new = round((OR + OG + OB) / 3.0);
 
-            if (new < 80) // if low
-            {
+            if (new < 80){
                 image[i][j].rgbtRed     = new;
                 image[i][j].rgbtGreen   = new;
                 image[i][j].rgbtBlue    = new; 
             } 
-            if (new > 170) // if high
-            {
+            if (new > 170){
                 image[i][j].rgbtRed     = (int) new * 0.60;
                 image[i][j].rgbtGreen   = new;
                 image[i][j].rgbtBlue    = (int) new * 0.60;
             }
-            else // mid-range
-            {
+            else {
                 image[i][j].rgbtRed     = (int) new * 0.30;
                 image[i][j].rgbtGreen   = new;
                 image[i][j].rgbtBlue    = (int) new * 0.30;

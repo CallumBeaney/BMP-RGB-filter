@@ -1,29 +1,32 @@
 ABOUT THIS PROGRAM
 
-    This program is being written as part of a work-in-progress photography project, where different batches of images are to be processed with a custom RGB colour filter.
-    For the project in question, the colour filter has been written for high-contrast images, particularly those shot at night with a flash.
+    This program goes through a folder of BMPs files and outputs each with a colour filter applied.
+    It is being written for a WIP photography project; the colour filter is written to look dark & somewhat "lofi".
 
-OUTLINE
+USAGE
 
-    1. User inputs command line arguments: ./program-name (command-line flag) [input folder name] *
-    2. The program checks the command line arguments, and then opens the input folder and tries to read a file in the folder. **
-    3. It checks that the file can be accessed, opens it, changes its colour values according to the (flag) argument, and saves it.
-    4. It does (3) to each following file until there are no files left to be processed inside the folder.
-
-    *  The input folder must be inside the directory.
-    ** All input images must be of type _24-bit UNCOMPRESSED BMP 4.0_ with no colour profile information (for now).
+    User-inputted command line argument: ./program-name (command-line flag) [input folder name]
+        e.g. ./rgbfilter -r testimages
+    
+    DEBUGGING NOTES:
+    1. The BMPs must be 24-bit, uncompressed BMP 4.0s with no colour profile information recorded.
+    2. The headers in these files can be temperamental, even being changed by being opened in Preview and then closed without saving; to troubleshoot, open an image editor and re-export with the required settings. 
+    3. The input folder must be inside the directory.
 
 ACKNOWLEDGMENTS:
 
     1. Bitmap file handling adapted from a PSET I completed for the Harvard CS50 course: https://cs50.harvard.edu/x/2022/psets/4/filter/less/
     2. Learned DIRENT.H with the UNIX specification: https://pubs.opengroup.org/onlinepubs/7908799/xsh/dirent.h.html
-    3. Learned MKDIR from: https://www.delftstack.com/howto/c/mkdir-in-c/
+    3. Learned MKDIR from: https://pubs.opengroup.org/onlinepubs/009695299/functions/mkdir.html
     4. Received debugging advice on DIRENT & MKDIR from StackOverflow.
 
 TO DO:
 
-    - Force consistent fileread order for "while((input = readdir(infolder)) != NULL)" at line 48
-    - Implement output folder creation and path set based on additional command line argument
-    - Apply fprintf/perror as appropriate to error checks
-    - Tailor filter functions to final project images
+    - Check CTRL+F "sprintf", change to snprintf for buffer overflow contingency
+    - Fix error condition for filename too long & confirm input path syntax has no potential bugs
+    - Improve gradation in higher luminosity values while maintaining deep filter colour
+    - Abstract greyscale conversion stage in helpers.c
+    - Allow the output folder's path to be relative
 
+Callum Beaney
+12日03月2022年
