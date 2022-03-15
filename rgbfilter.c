@@ -47,10 +47,14 @@ int main(int argc, char *argv[])
     // input = input file; outpath = output file's filepath
     struct dirent *input;
     char outpath[PATH_MAX];
+    
 
     // Readdir loop accesses input folder file by file
     while((input = readdir(infolder)) != NULL) 
     {
+        // Ignore DS_Store file is on Mac
+        if (strcmp(input->d_name, ".DS_Store") == 0){   continue;   }
+
         // 1: Check input filepath is correct, 2: write to char "path", 3: read from input image using path
         char path[PATH_MAX];
         if (!strcmp(input->d_name, ".") || !strcmp(input->d_name, "..")) {
@@ -90,15 +94,15 @@ int main(int argc, char *argv[])
 
         BITMAPINFOHEADER bi;
         fread(&bi, sizeof(BITMAPINFOHEADER), 1, imgin);
-
-        if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 ||
+ 
+       if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 ||
             bi.biBitCount != 24 || bi.biCompression != 0)
         {
             fclose(imgout);
             fclose(imgin);
             fprintf(stderr, "Unsupported file format.\n File must be an uncompressed, 24-bit BMP 4.0\n");
             return 6;
-        } 
+        }
 
         // Get dimensions of image input per input image's buffer
         int height = abs(bi.biHeight);

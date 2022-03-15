@@ -11,7 +11,13 @@ USAGE
     DEBUGGING NOTES:
     1. The BMPs must be 24-bit, uncompressed BMP 4.0s with no colour profile information recorded.
     2. The headers in these files can be temperamental, even being changed by being opened in Preview and then closed without saving; to troubleshoot, open an image editor and re-export with the required settings. 
+    
+        DEBUG FILE HEADERS:
+        printf("%s\n", input->d_name);
+        printf("%X v bf.bfType 0x4d42 \n %i v bfOffBits 54\n %i v bi.biSize 40\n %i v bi.biBitCount 24\n %i v bi.biCompression 0\n\n", bf.bfType, bf.bfOffBits, bi.biSize, bi.biBitCount, bi.biCompression);
+
     3. The input folder must be inside the directory.
+
 
 ACKNOWLEDGMENTS:
 
@@ -22,11 +28,9 @@ ACKNOWLEDGMENTS:
 
 TO DO:
 
-    - Check CTRL+F "sprintf", change to snprintf for buffer overflow contingency
-    - Fix error condition for filename too long & confirm input path syntax has no potential bugs
     - Improve gradation in higher luminosity values while maintaining deep filter colour
     - Abstract greyscale conversion stage in helpers.c
     - Allow the output folder's path to be relative
 
 Callum Beaney
-12日03月2022年
+15日03月2022年

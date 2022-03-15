@@ -53,3 +53,10 @@ dkms.conf
 
 # Misc
 Makefile.txt
+rgbfilter
+.gitattributes
+.vscode
+
+# OS generated files #
+.DS_Store
+.DS_Store?
