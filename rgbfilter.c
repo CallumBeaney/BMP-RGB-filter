@@ -42,7 +42,6 @@ int main(int argc, char *argv[])
     sprintf(outfoldername, "OUTPUT_%c", (filter - 32));
     mkdir(outfoldername, S_IRWXU);
 
-        // TODO: Check CTRL+F "sprintf", change to snprintf for buffer overflow contingency
  
     // input = input file; outpath = output file's filepath
     struct dirent *input;
@@ -71,7 +70,7 @@ int main(int argc, char *argv[])
         sprintf(outputname, "%c_%s", ((int) filter - 32), input->d_name);
 
         if ((size_t)snprintf(outpath, sizeof outpath, "%s/%s", outfoldername, outputname) >= sizeof(outpath)) {
-            fprintf(stderr, "Filename too long: %s/%s\n", outfoldername, outputname);
+            fprintf(stderr, "ERROR: Filename too long: %s/%s\n", outfoldername, outputname);
             continue;
         }
         FILE *imgout = fopen(outpath, "wb");
@@ -79,12 +78,12 @@ int main(int argc, char *argv[])
 
         // Check input can be read & have sufficient memory to open output
         if (imgin == NULL){
-            fprintf(stderr, "Could not open %s.\n", path);
+            fprintf(stderr, "ERROR: Could not open %s.\n", path);
             return 4;
             }
         if (imgout == NULL){
             fclose(imgin);
-            fprintf(stderr, "Could not create images.\n");
+            fprintf(stderr, "ERROR: Could not create images.\n");
             return 5;
         }
     
@@ -98,10 +97,13 @@ int main(int argc, char *argv[])
        if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 ||
             bi.biBitCount != 24 || bi.biCompression != 0)
         {
+            // If not a BMP, the close input & output files, delete output file.
             fclose(imgout);
+            unlink(outpath);
             fclose(imgin);
-            fprintf(stderr, "Unsupported file format.\n File must be an uncompressed, 24-bit BMP 4.0\n");
-            return 6;
+            fprintf(stderr, "ERROR: %s is of an unsupported file format and was not processed.\n"
+                            "Files must be: uncompressed, 24-bit BMP 4.0\n", input->d_name);
+            continue;
         }
 
         // Get dimensions of image input per input image's buffer
