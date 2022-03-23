@@ -30,9 +30,9 @@ TO DO:
 
     - Improve gradation in higher luminosity values while maintaining deep filter colour
     - Abstract greyscale conversion stage in helpers.c 
-    - Allow the output folder's path to be relative
-    - Check CTRL+F "sprintf", change to snprintf for buffer overflow contingency
+    - Optional 4th argv to allow relative output folder path
+    - RE: instances of "sprintf" - change to snprintf for buffer overflow contingency
 
 
 Callum Beaney
-22日03月2022年
+23日03月2022年

@@ -4,6 +4,7 @@ rgbfilter
 .gitattributes
 .vscode
 
+
 # OS generated files #
 .DS_Store
 .DS_Store?
@@ -62,3 +63,5 @@ Mkfile.old
 dkms.conf
 
 .gitignore
+rgbfilter
+rgbfilter

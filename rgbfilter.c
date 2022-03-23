@@ -153,5 +153,6 @@ int main(int argc, char *argv[])
         fclose(imgin);
         fclose(imgout);
         free(image);
+        
     }
 }

@@ -8,4 +8,3 @@ void blue(int height, int width, RGBTRIPLE image[height][width]);
 
 // Tint image green
 void green(int height, int width, RGBTRIPLE image[height][width]);
-
