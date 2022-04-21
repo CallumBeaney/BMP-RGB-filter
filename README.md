@@ -3,6 +3,8 @@ ABOUT THIS PROGRAM
     This program goes through a folder of BMPs files and outputs each with a colour filter applied.
     It is being written for a WIP photography project; the colour filter is written to look dark & somewhat "lofi".
 
+<img src="https://callumbeaney.github.io/Website/resources/rgb.gif" alt="drawing" width="600"/>
+
 USAGE
 
     User-inputted command line argument: ./program-name (command-line flag) [input folder name]
